@@ -6,7 +6,7 @@ public class Main {
     /*For this week's exercise, I have sorted the individual tasks into methods, rather than
     completely overwriting the main method.*/
     public static void main(String[] args) {
-        taskAverage();
+        taskSwap();
     }
 
     /**
@@ -59,5 +59,26 @@ public class Main {
 
         // Print the average of the two numbers
         System.out.println("The average of the two numbers is " + average);
+    }
+
+    /**
+     * Task 5: Write a program that allows the user to enter two integer values.
+     * The program should then output the original order they were entered, then output the values in reverse order (swapped).
+     */
+    static void taskSwap() {
+        // Get the two numbers to swap
+        int num1 = InputReader.getInt("Enter the first number: ");
+        int num2 = InputReader.getInt("Enter the second number: ");
+
+        // Print the original order of the numbers
+        System.out.println("The original order of the numbers is " + num1 + " and " + num2);
+
+        // Swap the numbers
+        int temp = num1;
+        num1 = num2;
+        num2 = temp;
+
+        // Print the swapped order of the numbers
+        System.out.println("The swapped order of the numbers is " + num1 + " and " + num2);
     }
 }
