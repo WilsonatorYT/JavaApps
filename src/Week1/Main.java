@@ -8,7 +8,7 @@ public class Main {
     /*For this week's exercise, I have sorted the individual tasks into methods, rather than
     completely overwriting the main method.*/
     public static void main(String[] args) {
-        taskCalculateDaysOld();
+        taskConvertFeetToMiles();
     }
 
     /**
@@ -143,6 +143,23 @@ public class Main {
 
         // Print the number of days old the user is
         System.out.println("You are " + daysOld + " days old");
+    }
+
+    /**
+     * Task 8: Write a program that will convert the number of feet entered to miles.
+     */
+    static void taskConvertFeetToMiles() {
+        // Get the number of feet to convert
+        int feet = InputReader.getInt("Enter the number of feet to convert: ");
+
+        // Calculate the number of miles
+        double miles = feet / 5280.0;
+
+        // Round the number of miles to 2 decimal places for readability
+        miles = Math.round(miles * 100.0) / 100.0;
+
+        // Print the number of miles
+        System.out.println(feet + " feet is " + miles + " miles");
     }
 
     /**
