@@ -2,11 +2,13 @@ package Week1;
 
 import helpers.InputReader;
 
+import java.util.Calendar;
+
 public class Main {
     /*For this week's exercise, I have sorted the individual tasks into methods, rather than
     completely overwriting the main method.*/
     public static void main(String[] args) {
-        taskSwap();
+        taskCalculateBirthYear();
     }
 
     /**
@@ -80,5 +82,22 @@ public class Main {
 
         // Print the swapped order of the numbers
         System.out.println("The swapped order of the numbers is " + num1 + " and " + num2);
+    }
+
+    /**
+     * Task 6: Write a program that allows a user to type in their age. The program should then work out which year they were born and output this to the screen.
+     */
+    static void taskCalculateBirthYear() {
+        // Get the user's age
+        int age = InputReader.getInt("Enter your age: ");
+
+        // Get the current date
+        Calendar calendar = Calendar.getInstance();
+
+        // Calculate the user's birth year
+        int birthYear = calendar.get(Calendar.YEAR) - age;
+
+        // Print the user's birth year
+        System.out.println("You were born in " + birthYear);
     }
 }
