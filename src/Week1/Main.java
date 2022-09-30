@@ -6,7 +6,7 @@ public class Main {
     /*For this week's exercise, I have sorted the individual tasks into methods, rather than
     completely overwriting the main method.*/
     public static void main(String[] args) {
-        taskOutputRectangle();
+        taskAverage();
     }
 
     /**
@@ -44,5 +44,20 @@ public class Main {
         // Print the perimeter and area of the rectangle
         System.out.println("The perimeter of the rectangle is " + perimeter);
         System.out.println("The area of the rectangle is " + area);
+    }
+
+    /**
+     * Task 4: Write a program that calculates and displays the average of two numbers entered. Check this program works for whole and decimal values.
+     */
+    static void taskAverage() {
+        // Get the two numbers to average (using doubles to allow for decimal values)
+        double num1 = InputReader.getDouble("Enter the first number: ");
+        double num2 = InputReader.getDouble("Enter the second number: ");
+
+        // Calculate the average of the two numbers
+        double average = (num1 + num2) / 2;
+
+        // Print the average of the two numbers
+        System.out.println("The average of the two numbers is " + average);
     }
 }
