@@ -2,13 +2,14 @@ package Week1;
 
 import helpers.InputReader;
 
+import java.text.NumberFormat;
 import java.util.Calendar;
 
 public class Main {
     /*For this week's exercise, I have sorted the individual tasks into methods, rather than
     completely overwriting the main method.*/
     public static void main(String[] args) {
-        taskConvertFeetToMiles();
+        taskCalculateInterestEndOfYear();
     }
 
     /**
@@ -160,6 +161,81 @@ public class Main {
 
         // Print the number of miles
         System.out.println(feet + " feet is " + miles + " miles");
+    }
+
+    /**
+     * Task 9.a: Write a program that will calculate how much interest will be paid at the end of a year on a savings account.
+     * I was unsure whether this meant explicitly at the end of the year, or one year from the deposit date, so I have done both.
+     * This method calculates the interest at the end of the year. (31st December)
+     */
+    static void taskCalculateInterestEndOfYear() {
+        // Store the interest rate as a constant (for 1%, this would be 0.01)
+        final double INTEREST_RATE = 0.01;
+
+        // Get the amount of money to deposit
+        double deposit = InputReader.getDouble("Enter the amount of money to deposit: £");
+
+        // Get the current date
+        Calendar currentDate = Calendar.getInstance();
+
+        // Get the end of the year (31st December)
+        Calendar endOfYear = Calendar.getInstance();
+        endOfYear.set(Calendar.MONTH, Calendar.DECEMBER);
+        endOfYear.set(Calendar.DAY_OF_MONTH, 31);
+
+        // Calculate the number of days until the end of the year
+        long daysUntilEndOfYear = (endOfYear.getTimeInMillis() - currentDate.getTimeInMillis()) / (1000 * 60 * 60 * 24);
+
+        // Calculate the interest based on the number of days until the end of the year
+        double interest = deposit * (daysUntilEndOfYear / 365.0) * INTEREST_RATE;
+
+        // Round the interest to 2 decimal places for readability
+        interest = Math.round(interest * 100.0) / 100.0;
+
+        // Calculate the amount of money after the interest is paid
+        double total = deposit + interest;
+
+        // Since we are outputting a monetary value, we should use the currency format
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+        currencyFormat.setMaximumFractionDigits(2);
+
+        // Get the output string using the currency format
+        String output = currencyFormat.format(total);
+
+        // Print the output
+        System.out.println("At the end of the year, you will have " + output);
+    }
+
+    /**
+     * Task 9.b: Write a program that will calculate how much interest will be paid at the end of a year on a savings account.
+     * I was unsure whether this meant explicitly at the end of the year, or one year from the deposit date, so I have done both.
+     * This method calculates the interest one year from the deposit date.
+     */
+    static void taskCalculateInterestOneYear() {
+        // Store the interest rate as a constant (for 1%, this would be 0.01)
+        final double INTEREST_RATE = 0.01;
+
+        // Get the amount of money to deposit
+        double deposit = InputReader.getDouble("Enter the amount of money to deposit: £");
+
+        // Calculate the interest after one year
+        double interest = deposit * INTEREST_RATE;
+
+        // Round the interest to 2 decimal places for readability
+        interest = Math.round(interest * 100.0) / 100.0;
+
+        // Calculate the amount of money after the interest is paid
+        double total = deposit + interest;
+
+        // Since we are outputting a monetary value, we should use the currency format
+        NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
+        currencyFormat.setMaximumFractionDigits(2);
+
+        // Get the output string using the currency format
+        String output = currencyFormat.format(total);
+
+        // Print the output
+        System.out.println("After one year, you will have " + output);
     }
 
     /**
