@@ -8,7 +8,7 @@ public class Main {
     /*For this week's exercise, I have sorted the individual tasks into methods, rather than
     completely overwriting the main method.*/
     public static void main(String[] args) {
-        taskCalculateBirthYear();
+        taskCalculateDaysOld();
     }
 
     /**
@@ -99,5 +99,73 @@ public class Main {
 
         // Print the user's birth year
         System.out.println("You were born in " + birthYear);
+    }
+
+    /**
+     * Task 7: Modified version of task 6, where the user is asked to enter their date of birth and calculate how many days old they are.
+     */
+    static void taskCalculateDaysOld() {
+        // Get the user's date of birth
+        int day = InputReader.getInt("Enter the day you were born: ");
+
+        // Month can be entered as either a number or a string
+        String monthString = InputReader.getString("Enter the month you were born: ");
+        int month;
+
+        // Check if the month is a number or a string
+        try {
+            month = Integer.parseInt(monthString);
+            // Subtract 1 from the month, as months are 0-indexed
+            month--;
+        } catch (NumberFormatException e) {
+            // If the month is a string, convert it to a number
+            month = getMonthFromString(monthString);
+        }
+
+        // Check if the month is invalid, and throw an error if it is
+        if (month == -1)
+        {
+            System.out.println("Invalid month entered");
+            return;
+        }
+
+        int year = InputReader.getInt("Enter the year you were born: ");
+
+        // Store the date of birth in a Calendar object
+        Calendar dateOfBirth = Calendar.getInstance();
+        dateOfBirth.set(year, month, day);
+
+        // Get the current date
+        Calendar currentDate = Calendar.getInstance();
+
+        // Calculate the number of days old the user is
+        long daysOld = (currentDate.getTimeInMillis() - dateOfBirth.getTimeInMillis()) / (1000 * 60 * 60 * 24);
+
+        // Print the number of days old the user is
+        System.out.println("You are " + daysOld + " days old");
+    }
+
+    /**
+     * Converts a month string to a month number.
+     * @param monthString The month string to convert. (e.g. "January")
+     * @return The month index (0-11).
+     */
+    private static int getMonthFromString(String monthString) {
+        // Convert the month string to lowercase to avoid case sensitivity issues
+        return switch (monthString.toLowerCase()) {
+            case "january" -> 0;
+            case "february" -> 1;
+            case "march" -> 2;
+            case "april" -> 3;
+            case "may" -> 4;
+            case "june" -> 5;
+            case "july" -> 6;
+            case "august" -> 7;
+            case "september" -> 8;
+            case "october" -> 9;
+            case "november" -> 10;
+            case "december" -> 11;
+            default -> -1; // Return -1 if the month is invalid
+        };
     }
 }
