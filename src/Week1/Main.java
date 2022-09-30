@@ -6,7 +6,7 @@ public class Main {
     /*For this week's exercise, I have sorted the individual tasks into methods, rather than
     completely overwriting the main method.*/
     public static void main(String[] args) {
-
+        taskOutputRectangle();
     }
 
     /**
@@ -26,5 +26,23 @@ public class Main {
 
         // Print a message saying hello to the user
         System.out.println("Hello " + name);
+    }
+
+    /**
+     * Task 3: Write a program that asks the user to enter values for the length and height of a
+     * rectangle and then outputs the perimeter and area of the rectangle to the screen.
+     */
+    static void taskOutputRectangle() {
+        // Get the length and height of the rectangle
+        int length = InputReader.getInt("Enter the length of the rectangle: ");
+        int height = InputReader.getInt("Enter the height of the rectangle: ");
+
+        // Calculate the perimeter and area of the rectangle
+        int perimeter = (length * 2) + (height * 2);
+        int area = length * height;
+
+        // Print the perimeter and area of the rectangle
+        System.out.println("The perimeter of the rectangle is " + perimeter);
+        System.out.println("The area of the rectangle is " + area);
     }
 }
